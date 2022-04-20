@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
-
+*.txt
+test*
+cmake-build-debug/*
+main.c
+*.sh
 # Object files
 *.o
 *.ko
