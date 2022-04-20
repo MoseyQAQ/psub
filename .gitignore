@@ -5,6 +5,7 @@ test*
 cmake-build-debug/*
 main.c
 *.sh
+.idea/*
 # Object files
 *.o
 *.ko
