@@ -16,11 +16,25 @@
 #include "string.h"
 #include "unistd.h"
 #include "linux/limits.h"
+#include "sys/types.h"
+#include "sys/socket.h"
+#include "sys/un.h"
 #define BUFFER_SIZE 256
 
 #ifndef PSUB_PSUB_H
 #define PSUB_PSUB_H
-
+typedef struct job_info{
+    int ID;
+    char *sub_time;
+    char *start_time;
+    char *end_time;
+    char *user;
+    char *path;
+    char *name;
+    char *script;
+    char *status;
+    struct job_info *next;
+}job_info;
 char *getDirName(char *dir,char *dirName)
 {
     char *token;
@@ -43,5 +57,16 @@ char *getTime(char *timeString)
     timeString = ctime(&rawtime);
     timeString[strlen(timeString)-1] = '\0';
     return timeString;
+}
+int exists(char *name)
+{
+    FILE *open;
+    open = fopen(name,"r");
+    if(open == NULL)
+        return 0;
+    else{
+        fclose(open);
+        return 1;
+    }
 }
 #endif //PSUB_PSUB_H
